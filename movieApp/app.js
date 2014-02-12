@@ -1,4 +1,5 @@
 ﻿(function () {
+    "use strict";
 
     var module = angular.module("movieApp", []);
 
@@ -29,6 +30,7 @@
               .then(showMovies, onError);
 
         $scope.makeLonger = function (movie) {
+
             movie.length += 1;
         };
 
@@ -60,5 +62,29 @@
     movieService.$inject = ["$http", "$q", "$timeout"];
 
     module.factory("movieService", movieService);
+
+}());
+
+(function() {
+
+    var module = angular.module("movieApp");
+
+    var SimpleController1 = function($scope) {
+
+        var user = {
+            
+        };
+
+        $scope.user = user;
+
+    };
+
+    var SimpleController2 = function ($scope) {
+
+    };
+
+
+    module.controller("SimpleController1", SimpleController1);
+    module.controller("SimpleController2", SimpleController2);
 
 }());
