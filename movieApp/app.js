@@ -5,20 +5,34 @@
 
     module.run(function ($rootScope, $timeout) {
 
-        $rootScope.message = "Hello, World";
-        $rootScope.counter = 0;
+        $rootScope.editFormUrl = "editMovie.html";
 
-        var incrementCounter = function() {
-            $rootScope.$apply(function() {
-                $rootScope.counter += 1;
-                setTimeout(incrementCounter, 1000);
-            });
+        $rootScope.message = "Hello, World";       
+    });
+
+}());
+
+
+(function() {
+    
+    var module = angular.module("movieApp");
+
+    var MovieEditController = function($scope) {
+
+        $scope.isValid = function() {
+            return $scope.movieEditForm.$valid;
         };
 
-        setTimeout(incrementCounter, 1000);
+    };
 
+    var allJson = function() {
+        return function(o) {
+            return JSON.stringify(o, null, 2);
+        };
+    };
+    module.filter("alljson", allJson);
 
-    });
+    module.controller("MovieEditController", MovieEditController);
 
 }());
 

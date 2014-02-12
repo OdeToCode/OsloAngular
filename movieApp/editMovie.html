@@ -1,0 +1,18 @@
+﻿<div ng-controller="MovieEditController">
+    <form name="movieEditForm" ng-submit="saveMovie()">
+
+        <!--<pre> {{ movieEditForm | alljson }}</pre>-->
+
+        <input type="text" name="title"
+               required ng-model="editMovie.title" placeholder="Title" />
+
+        <input name="length"
+               type="number"
+               required ng-model="editMovie.length" placeholder="Length"
+               min="0" max="400" />
+
+        <input class="btn btn-primary"
+               type="submit" value="Save"
+               ng-disabled="!isValid()" />
+    </form>
+</div>
