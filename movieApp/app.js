@@ -3,10 +3,7 @@
 
     var module = angular.module("movieApp", []);
 
-    module.run(function ($rootScope, $timeout) {
-
-        $rootScope.editFormUrl = "editMovie.html";
-
+    module.run(function ($rootScope, $timeout) {        
         $rootScope.message = "Hello, World";       
     });
 
@@ -25,15 +22,15 @@
 
     };
 
+    module.controller("MovieEditController", MovieEditController);
+    
     var allJson = function() {
         return function(o) {
             return JSON.stringify(o, null, 2);
         };
     };
     module.filter("alljson", allJson);
-
-    module.controller("MovieEditController", MovieEditController);
-
+    
 }());
 
 (function () {
@@ -50,14 +47,23 @@
             $scope.movies = response.data;
         };
 
+        $scope.editformurl = "editMovie.html";
         $scope.message = "Hello from Movie List Controller";
 
         movieService
              .getAll()
               .then(showMovies, onError);
 
-        $scope.makeLonger = function (movie) {
+        $scope.isEditMode = function () {           
+            return editableMovie;
+        };
 
+        $scope.editMovie = function(movie) {
+            $scope.editableCopy = angular.copy(movie);
+            $scope.editableMovie = movie;
+        };
+
+        $scope.makeLonger = function (movie) {
             movie.length += 1;
         };
 
@@ -65,6 +71,15 @@
             movie.length -= 1;
         };
 
+        $scope.saveMovie = function(movie){
+            // call movie service and http.put the movie
+            $scope.editableMovie = null;
+        };
+        $scope.cancelEdit = function(movie){
+            if($scope.editableCopy){
+                angular.extend(movie, $scope.editableCopy);
+            }
+        };
     };
 
     module.controller("MovieListController", MovieListController);
@@ -75,7 +90,7 @@
 
     var module = angular.module("movieApp");
 
-    var movieService = function ($http, $q, $timeout) {
+    var movieService = function ($http) {
         
         var get = function () {                       
             return $http.get("movies.json");
@@ -86,7 +101,6 @@
         };
 
     };
-    movieService.$inject = ["$http", "$q", "$timeout"];
 
     module.factory("movieService", movieService);
 

@@ -24,19 +24,16 @@
         <ul class="nav navbar-nav">
             <li><a href="/default.html">Home</a></li>
         </ul>
-    </nav>
-    
-    <div ng-include="editFormUrl"></div>
-
-    <div ng-controller="MovieListController" class="row">
-
-        <div ng-show="error">
-            Error:
-            <pre>
+    </nav>    
+    <div ng-show="error">
+        Error:
+        <pre>
                 {{ error | json }}
             </pre>
-        </div>
-        <div class="col-md-12">
+    </div>
+   
+    <div ng-controller="MovieListController" class="row">
+        <div class="col-md-8">
             <table class="table table-striped" ng-show="movies">
                 <tr>
                     <th>
@@ -57,17 +54,24 @@
                         {{ movie.length }}
                     </td>
                     <td>
-                        <button class="btn" ng-click="makeLonger(movie)">
+                        <button title="more movie" class="btn" ng-click="makeLonger(movie)">
                             <span class="glyphicon glyphicon-plus">
                             </span>
                         </button>
-                        <button class="btn" ng-click="makeShorter(movie)">
+                        <button title="less movie" class="btn" ng-click="makeShorter(movie)">
                             <span class="glyphicon glyphicon-minus">
+                            </span>
+                        </button>
+                        <button title="edit" class="btn" ng-click="editMovie(movie)">
+                            <span class="glyphicon glyphicon-edit">
                             </span>
                         </button>
                     </td>
                 </tr>
-            </table>
+            </table>           
+        </div>
+        <div class="col-md-4">
+            <div ng-show="editableMovie" ng-include="editformurl"></div>
         </div>
     </div>
 
