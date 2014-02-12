@@ -2,12 +2,43 @@
 <html>
 <head>
     <title>The Movie Application</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" />
+    <style>
+        body[ngCloak] {
+            display: none;
+        }
+    </style>
 </head>
-<body ng-app="movieApp">
-    
-    {{ 2 + 2 }}
-    {{ message }}
+<body ng-app="movieApp" class="container" ng-cloak>
+
+    <div ng-controller="MovieListController" class="row">
         
+        Total movies: {{movies.length}}
+        
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <tr ng-repeat="movie in movies">
+                    <td>
+                        {{ movie.title }} 
+                        <span ng-show="movie.title">The title exists</span>
+                    </td>
+                    <td>
+                        {{ movie.length }}
+                    </td>
+                    <td>
+                        <input type="text" ng-model="movie.title"/>
+                    </td>
+                    <td>
+                        <button class="btn" ng-click="addExclamation(movie)">
+                            Add an exclamation
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.js"></script>
     <script src="app.js"></script>
 </body>
