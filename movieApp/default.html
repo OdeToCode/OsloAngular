@@ -11,26 +11,47 @@
 </head>
 <body ng-app="movieApp" class="container" ng-cloak>
 
+    <nav class="navbar navbar-default navbar-inverse">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">At The Movies!</a>
+        </div>
+
+        <ul class="nav navbar-nav">
+            <li><a href="/default.html">Home</a></li>
+        </ul>
+    </nav>
+
     <div ng-controller="MovieListController" class="row">
-        
-        Total movies: {{movies.length}}
-        
+
         <div class="col-md-12">
             <table class="table table-striped">
+                <tr>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Length
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
                 <tr ng-repeat="movie in movies">
                     <td>
-                        {{ movie.title }} 
+                        {{ movie.title }}
                         <span ng-show="movie.title">The title exists</span>
                     </td>
                     <td>
                         {{ movie.length }}
                     </td>
                     <td>
-                        <input type="text" ng-model="movie.title"/>
-                    </td>
-                    <td>
-                        <button class="btn" ng-click="addExclamation(movie)">
-                            Add an exclamation
+                        <button class="btn" ng-click="makeLonger(movie)">
+                            <span class="glyphicon glyphicon-plus">
+                            </span>
+                        </button>
+                        <button class="btn" ng-click="makeShorter(movie)">
+                            <span class="glyphicon glyphicon-minus">
+                            </span>
                         </button>
                     </td>
                 </tr>

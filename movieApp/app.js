@@ -22,10 +22,13 @@
             { title: "The Hobbit 2", length: 240 }
         ];
 
-        $scope.addExclamation = function(movie) {
-            movie.title += "!";
+        $scope.makeLonger = function(movie) {
+            movie.length += 1;
         };
 
+        $scope.makeShorter = function (movie) {
+            movie.length -= 1;
+        };
 
     };
 
