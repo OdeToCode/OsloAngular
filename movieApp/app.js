@@ -48,23 +48,8 @@
 
     var movieService = function ($http, $q, $timeout) {
         
-        var get = function () {
-            
-            var deferred = $q.defer();
-
-            var movies =  [
-                { "title": "Star Wars 4", "length": 120 },
-                { "title": "Gravity", "length": 90 },
-                { "title": "The Hobbit 2", "length": 240 }
-            ];
-
-            $timeout(function() {
-                deferred.resolve(movies);
-            }, 3000);       
-           
-            return deferred.promise;
-
-            //return $http.get("movies.json");
+        var get = function () {                       
+            return $http.get("movies.json");
         };
 
         return {            
@@ -72,6 +57,7 @@
         };
 
     };
+    movieService.$inject = ["$http", "$q", "$timeout"];
 
     module.factory("movieService", movieService);
 

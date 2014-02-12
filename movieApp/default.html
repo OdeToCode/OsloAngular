@@ -22,7 +22,12 @@
     </nav>
 
     <div ng-controller="MovieListController" class="row">
-
+        <div ng-show="error">
+            Error:
+            <pre>
+                {{ error | json }}
+            </pre>
+        </div>
         <div class="col-md-12">
             <table class="table table-striped" ng-show="movies">
                 <tr>
@@ -38,7 +43,7 @@
                 </tr>
                 <tr ng-repeat="movie in movies">
                     <td>
-                        {{ movie.title }}                        
+                        {{ movie.title }}
                     </td>
                     <td>
                         {{ movie.length }}
