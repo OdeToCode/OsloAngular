@@ -24,7 +24,7 @@
     <div ng-controller="MovieListController" class="row">
 
         <div class="col-md-12">
-            <table class="table table-striped">
+            <table class="table table-striped" ng-show="movies">
                 <tr>
                     <th>
                         Title
@@ -38,8 +38,7 @@
                 </tr>
                 <tr ng-repeat="movie in movies">
                     <td>
-                        {{ movie.title }}
-                        <span ng-show="movie.title">The title exists</span>
+                        {{ movie.title }}                        
                     </td>
                     <td>
                         {{ movie.length }}
