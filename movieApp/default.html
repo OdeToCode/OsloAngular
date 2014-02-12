@@ -20,34 +20,11 @@
             <li><a href="/default.html">Home</a></li>
         </ul>
     </nav>
-
-
-    <br />
-    <br />
-
-    <div ng-controller="SimpleController1">
-        <label>
-            First Name:
-            <input type="text" ng-model="user.firstName" />
-        </label>
-        {{ user.firstName }}
-        
-
-        <div ng-controller="SimpleController2">
-            <label>
-                First Name:
-                <input type="text" ng-model="user.firstName" />
-            </label>
-            {{ user.firstName }}
-        </div>   
-
-    </div>
-
-
-
-    <br />
-    <br />
-    <hr />
+    
+    <h1>{{counter}}</h1>
+    
+    <input type="text" ng-model="message"/>
+    {{ message }}
 
     <div ng-controller="MovieListController" class="row">
 

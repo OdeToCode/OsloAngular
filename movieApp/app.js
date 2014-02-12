@@ -3,8 +3,21 @@
 
     var module = angular.module("movieApp", []);
 
-    module.run(function ($rootScope) {
+    module.run(function ($rootScope, $timeout) {
+
         $rootScope.message = "Hello, World";
+        $rootScope.counter = 0;
+
+        var incrementCounter = function() {
+            $rootScope.$apply(function() {
+                $rootScope.counter += 1;
+                setTimeout(incrementCounter, 1000);
+            });
+        };
+
+        setTimeout(incrementCounter, 1000);
+
+
     });
 
 }());
@@ -62,29 +75,5 @@
     movieService.$inject = ["$http", "$q", "$timeout"];
 
     module.factory("movieService", movieService);
-
-}());
-
-(function() {
-
-    var module = angular.module("movieApp");
-
-    var SimpleController1 = function($scope) {
-
-        var user = {
-            
-        };
-
-        $scope.user = user;
-
-    };
-
-    var SimpleController2 = function ($scope) {
-
-    };
-
-
-    module.controller("SimpleController1", SimpleController1);
-    module.controller("SimpleController2", SimpleController2);
 
 }());
