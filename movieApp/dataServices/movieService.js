@@ -1,6 +1,6 @@
 ﻿(function () {
 
-    var module = angular.module("dataServices", ["movieModels"]);
+    var module = angular.module("dataServices", ["movieModels"]);    
 
     module.config(function ($provide) {
         $provide.provider("movieService", function () {
@@ -28,6 +28,7 @@
                                     return movies;
                                 });
                 };
+                this.$get.$inject = ["$http", "Movie"];
 
                 return {
                     getAll: get

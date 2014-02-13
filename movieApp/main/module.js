@@ -52,6 +52,16 @@
 
     module.run(function ($rootScope, $timeout, $log) {
         $rootScope.message = "Hello, World";
+        $rootScope.greetingType = "warning";
+        $rootScope.closeGreeting = function() {
+
+            $log.info("You closed greeting!");
+            $log.info(arguments);
+
+        };
+
+
+        $rootScope.reply2 = "Default reply";
     });
 
 }());

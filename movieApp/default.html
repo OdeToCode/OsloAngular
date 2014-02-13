@@ -4,9 +4,19 @@
     <title>The Movie Application</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" />
     <style>
-        body[ngCloak] {
-            display: none;
+        
+        .greetingWarning {
+            background: red;
         }
+
+        .greetingSuccess {
+            background: green;
+        }
+
+
+         body[ngCloak] {
+             display: none;
+         }
 
         input.ng-dirty.ng-invalid {
             background-color: red;
@@ -24,6 +34,18 @@
             <li><a href="/default.html">Home</a></li>
         </ul>
     </nav>
+    
+    <otc-greeting reply="reply1" type="{{greetingType}}" close="closeGreeting(1)">        
+        This is my greeting!
+    </otc-greeting>
+    Response: {{reply1}}
+    
+    <div otc-greeting reply="reply2" type="{{greetingType}}" 
+         close="closeGreeting(2,'Hello',message)">
+        This is a second greeting!
+    </div>
+    Response: {{reply2}}
+
     <div ng-show="ajaxLoadingCount">
         <img src="images/spinner.gif"/>
     </div>
@@ -83,6 +105,7 @@
     <script src="movieModels/Movie.js"></script>
     <script src="dataServices/movieService.js"></script>
     <script src="main/module.js"></script>
+    <script src="main/greetingDirective.js"></script>
     <script src="main/MovieListController.js"></script>
     <script src="main/allJsonFilter.js"></script>
     <script src="main/MovieEditController.js"></script>
