@@ -3,50 +3,70 @@
 
     var module = angular.module("movieApp", []);
 
-    module.run(function ($rootScope, $timeout) {        
-        $rootScope.message = "Hello, World";       
+    module.config(function($provide) {
+        $provide.decorator("$exceptionHandler", function($delegate) {
+            return function(ex, cause) {
+                $delegate(ex, cause);
+            };
+        });
+    });
+
+    module.config(function ($provide) {
+        $provide.decorator("$log", function ($delegate) {
+            $delegate.info = function(message) {
+                console.log("I overwrote log!!");
+            };
+            return $delegate;
+        });
+    });
+
+
+    module.run(function ($rootScope, $timeout, $log) {
+        $log.info("Hello! I am running!");
+        $log.error("Opps!");
+        $rootScope.message = "Hello, World";
     });
 
 }());
 
 
-(function() {
-    
+(function () {
+
     var module = angular.module("movieApp");
 
-    var MovieEditController = function($scope) {
+    var MovieEditController = function ($scope) {
 
-        $scope.isValid = function() {
+        $scope.isValid = function () {
             return $scope.movieEditForm.$valid;
         };
 
     };
 
     module.controller("MovieEditController", MovieEditController);
-    
-    var allJson = function() {
-        return function(o) {
+
+    var allJson = function () {
+        return function (o) {
             return JSON.stringify(o, null, 2);
         };
     };
     module.filter("alljson", allJson);
-    
+
 }());
 
 (function () {
 
-    var module = angular.module("movieApp");
+    var module = angular.module("movieApp");    
 
-    var MovieListController = function ($scope, movieService) {
+    var MovieListController = function ($scope, movieService, $timeout) {
 
-        var onError = function(error) {
+        var onError = function (error) {
             $scope.error = error;
         };
 
-        var showMovies = function(response) {
-            $scope.movies = response.data;
+        var showMovies = function (movies) {
+            $scope.movies = movies;
         };
-
+    
         $scope.editformurl = "editMovie.html";
         $scope.message = "Hello from Movie List Controller";
 
@@ -54,13 +74,14 @@
              .getAll()
               .then(showMovies, onError);
 
-        $scope.isEditMode = function () {           
+        $scope.isEditMode = function () {
             return editableMovie;
         };
 
-        $scope.editMovie = function(movie) {
+        $scope.editMovie = function (movie) {
             $scope.editableCopy = angular.copy(movie);
             $scope.editableMovie = movie;
+            throw "A different problem!";
         };
 
         $scope.makeLonger = function (movie) {
@@ -71,12 +92,12 @@
             movie.length -= 1;
         };
 
-        $scope.saveMovie = function(movie){
+        $scope.saveMovie = function (movie) {
             // call movie service and http.put the movie
             $scope.editableMovie = null;
         };
-        $scope.cancelEdit = function(movie){
-            if($scope.editableCopy){
+        $scope.cancelEdit = function (movie) {
+            if ($scope.editableCopy) {
                 angular.extend(movie, $scope.editableCopy);
             }
         };
@@ -91,17 +112,24 @@
     var module = angular.module("movieApp");
 
     var movieService = function ($http) {
-        
-        var get = function () {                       
-            return $http.get("movies.json");
+
+        var movies = [];
+
+        var get = function () {
+                        
+            return $http.get("movies.json")
+                        .then(function(response) {
+                            movies = response.data;
+                            return movies;
+                        });
         };
 
-        return {            
-          getAll: get  
+        return {
+            getAll: get
         };
 
     };
 
-    module.factory("movieService", movieService);
+    module.factory("movieService", movieService);  
 
 }());
