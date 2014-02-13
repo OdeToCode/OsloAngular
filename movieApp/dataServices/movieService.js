@@ -11,8 +11,28 @@
                 movieUrl = url;
             };
 
-            this.$get = function ($http, Movie) {
+            this.$get = function ($http, $q, Movie) {
                 var movies = [];
+
+                var getByTitle = function(title) {
+                    var deferred = $q.defer();
+                    var result = null;
+
+                    for (var i = 0; i < movies.length; i++) {
+                        if (movies[i].title == title) {
+                            result = movies[i];
+                            break;
+                        }
+                    }
+                    if (result) {
+                        deferred.resolve(result);
+                    } else {
+                        deferred.reject("Could not find that movie!");
+                    }
+
+
+                    return deferred.promise;
+                };
 
                 var get = function () {
 
@@ -31,7 +51,8 @@
                 this.$get.$inject = ["$http", "Movie"];
 
                 return {
-                    getAll: get
+                    getAll: get,
+                    getByTitle: getByTitle
                 };
             };
         });

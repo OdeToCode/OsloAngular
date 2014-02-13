@@ -2,7 +2,7 @@
 
     var module = angular.module("movieApp");
 
-    module.directive("rating", function() {
+    module.directive("rating", function($compile) {
         return {            
             restrict: "EA",
             replace: true,
@@ -18,10 +18,19 @@
                         }
                     });
                 });
+
+                scope.foo = function() {
+                    alert("test");
+                };
+
                 scope.$watch("value", function(newValue) {
                     element.empty();
                     for (var i = 0; i < newValue; i++) {
-                        element.append("<span class='glyphicon glyphicon-star'></span>");
+                        var star = angular.element("<span ng-click='foo()' class='glyphicon glyphicon-star'></span>");
+                        //$compile(star)(scope, function(cloned) {
+                        //    element.append(cloned);
+                        //});
+                        element.append(star);
                     }
                 });
             }                        

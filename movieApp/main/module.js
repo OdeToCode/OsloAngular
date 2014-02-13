@@ -1,7 +1,28 @@
 ﻿(function () {
     "use strict";
 
-    var module = angular.module("movieApp", ["dataServices"]);
+    var module = angular.module("movieApp", ["ngRoute", "ngAnimate",
+                                            "dataServices"]);
+
+
+    module.config(function($routeProvider) {
+
+        $routeProvider
+            .when("/", {
+                templateUrl: "main/movieList.html"
+            }).
+            when("/detail/:title", {
+                templateUrl: "main/movieDetail.html",
+                controller: "MovieDetailsController"
+            }).
+            otherwise({                
+               redirectTo: "/" 
+            });
+
+    });
+
+
+
 
     module.config(function($provide) {
         $provide.decorator("$exceptionHandler", function($delegate) {

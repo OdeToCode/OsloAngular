@@ -1,0 +1,51 @@
+﻿<div ng-controller="MovieListController" class="row">
+    <div class="col-md-8">
+        <table class="table table-striped" ng-show="movies">
+            <tr>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Length
+                </th>
+                <th>
+                    Rating
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+            <tr ng-repeat="movie in movies | orderBy:'title'">
+                <td>
+                    <a ng-href="#/detail/{{movie.title}}">
+                        {{ movie.title }}    
+                    </a>                    
+                </td>
+                <td>
+                    {{ movie.length }}
+                </td>
+                <td>
+                    <rating value="movie.rating"></rating>
+                    ({{movie.rating}})
+                </td>
+                <td>
+                    <button title="more movie" class="btn" ng-click="movie.makeLonger()">
+                        <span class="glyphicon glyphicon-plus">
+                        </span>
+                    </button>
+                    <button title="less movie" class="btn" ng-click="movie.makeShorter()">
+                        <span class="glyphicon glyphicon-minus">
+                        </span>
+                    </button>
+                    <button title="edit" class="btn" ng-click="editMovie(movie)">
+                        <span class="glyphicon glyphicon-edit">
+                        </span>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-4">
+        <div ng-show="editableMovie" ng-include="editformurl"></div>
+    </div>
+</div>
