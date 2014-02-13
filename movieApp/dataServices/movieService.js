@@ -1,6 +1,6 @@
 ﻿(function () {
 
-    var module = angular.module("dataServices", []);
+    var module = angular.module("dataServices", ["movieModels"]);
 
     module.config(function ($provide) {
         $provide.provider("movieService", function () {
@@ -11,14 +11,20 @@
                 movieUrl = url;
             };
 
-            this.$get = function ($http) {
+            this.$get = function ($http, Movie) {
                 var movies = [];
 
                 var get = function () {
 
                     return $http.get(movieUrl)
                                 .then(function (response) {
-                                    movies = response.data;
+                                    movies = [];
+                                    var moviesJson = response.data;
+                                    angular.forEach(moviesJson, function(json) {
+                                        var movie = new Movie();
+                                        angular.extend(movie, json);
+                                        movies.push(movie);
+                                    });
                                     return movies;
                                 });
                 };

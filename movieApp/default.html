@@ -24,6 +24,9 @@
             <li><a href="/default.html">Home</a></li>
         </ul>
     </nav>
+    <div ng-show="ajaxLoadingCount">
+        <img src="images/spinner.gif"/>
+    </div>
     <div ng-show="error">
         Error:
         <pre>
@@ -53,11 +56,11 @@
                         {{ movie.length }}
                     </td>
                     <td>
-                        <button title="more movie" class="btn" ng-click="makeLonger(movie)">
+                        <button title="more movie" class="btn" ng-click="movie.makeLonger()">
                             <span class="glyphicon glyphicon-plus">
                             </span>
                         </button>
-                        <button title="less movie" class="btn" ng-click="makeShorter(movie)">
+                        <button title="less movie" class="btn" ng-click="movie.makeShorter()">
                             <span class="glyphicon glyphicon-minus">
                             </span>
                         </button>
@@ -76,8 +79,10 @@
 
 
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.js"></script>
+    <script src="movieModels/module.js"></script>
+    <script src="movieModels/Movie.js"></script>
     <script src="dataServices/movieService.js"></script>
-    <script src="main/app.js"></script>
+    <script src="main/module.js"></script>
     <script src="main/MovieListController.js"></script>
     <script src="main/allJsonFilter.js"></script>
     <script src="main/MovieEditController.js"></script>

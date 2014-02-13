@@ -27,15 +27,7 @@
             $scope.editableCopy = angular.copy(movie);
             $scope.editableMovie = movie;            
         };
-
-        $scope.makeLonger = function (movie) {
-            movie.length += 1;
-        };
-
-        $scope.makeShorter = function (movie) {
-            movie.length -= 1;
-        };
-
+      
         $scope.saveMovie = function (movie) {
             // call movie service and http.put the movie
             $scope.editableMovie = null;
