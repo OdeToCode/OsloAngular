@@ -9,8 +9,15 @@
             .getByTitle(title)
             .then(function(movie) {
                 $scope.movie = movie;
-            });        
+            });
+        
+        $scope.showMore = true;
+        $scope.toggleShow = function () {
+            $scope.showMore = !$scope.showMore;
+        };
     };
+
+    
 
     module.controller("MovieDetailsController", MovieDetailsController);
 

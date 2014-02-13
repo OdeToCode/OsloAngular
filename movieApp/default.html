@@ -5,6 +5,20 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" />
     <style>
 
+        .toggle {
+            transition: 0.5s linear all;
+            opacity: 1;
+        }
+
+        .toggle.ng-hide {
+            opacity: 0;
+        }
+
+        .toggle.ng-hide-add, .toggle.ng-hide-remove {
+            display: block !important;
+        }
+
+
         .ng-enter {
             transition: all 0.5s linear;
             opacity: 0;
