@@ -1,5 +1,5 @@
 ﻿[
- { "title": "Star Wars 4", "length": 120, rating:5 },
- { "title": "Gravity 2", "length": 90, rating: 4 },
- { "title": "The Hobbit 2", "length": 240, rating: 2 }
+ { "title": "Star Wars 4", "length": 120, "rating":5 },
+ { "title": "Gravity 2", "length": 90, "rating": 4 },
+ { "title": "The Hobbit 2", "length": 240, "rating": 2 }
 ]

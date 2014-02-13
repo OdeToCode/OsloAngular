@@ -6,8 +6,7 @@
     };
     Movie.maxLength = 245;
 
-    Movie.prototype = {      
-
+    Movie.prototype = {        
         makeLonger: function () {
             if (this.length < Movie.maxLength) {
                 this.length += 1;

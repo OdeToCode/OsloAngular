@@ -33,18 +33,7 @@
         <ul class="nav navbar-nav">
             <li><a href="/default.html">Home</a></li>
         </ul>
-    </nav>
-    
-    <otc-greeting reply="reply1" type="{{greetingType}}" close="closeGreeting(1)">        
-        This is my greeting!
-    </otc-greeting>
-    Response: {{reply1}}
-    
-    <div otc-greeting reply="reply2" type="{{greetingType}}" 
-         close="closeGreeting(2,'Hello',message)">
-        This is a second greeting!
-    </div>
-    Response: {{reply2}}
+    </nav>   
 
     <div ng-show="ajaxLoadingCount">
         <img src="images/spinner.gif"/>
@@ -67,6 +56,9 @@
                         Length
                     </th>
                     <th>
+                        Rating
+                    </th>
+                    <th>
                         Actions
                     </th>
                 </tr>
@@ -76,6 +68,10 @@
                     </td>
                     <td>
                         {{ movie.length }}
+                    </td>
+                    <td>
+                        <rating value="movie.rating"></rating>
+                        ({{movie.rating}})
                     </td>
                     <td>
                         <button title="more movie" class="btn" ng-click="movie.makeLonger()">
@@ -105,6 +101,7 @@
     <script src="movieModels/Movie.js"></script>
     <script src="dataServices/movieService.js"></script>
     <script src="main/module.js"></script>
+    <script src="main/ratingDirective.js"></script>
     <script src="main/greetingDirective.js"></script>
     <script src="main/MovieListController.js"></script>
     <script src="main/allJsonFilter.js"></script>
