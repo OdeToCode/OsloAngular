@@ -11,13 +11,12 @@
             },
             link: function(scope, element) {
                 element.on("click", function() {
-                    
+                    scope.$apply(function() {
                         scope.value += 1;
                         if (scope.value > 5) {
                             scope.value = 1;
                         }
-                
-               
+                    });
                 });
                 scope.$watch("value", function(newValue) {
                     element.empty();
