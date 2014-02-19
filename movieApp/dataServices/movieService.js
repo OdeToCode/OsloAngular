@@ -1,17 +1,17 @@
-﻿(function () {
+﻿(function() {
 
-    var module = angular.module("dataServices", ["movieModels"]);    
+    var module = angular.module("dataServices", ["movieModels"]);
 
-    module.config(function ($provide) {
-        $provide.provider("movieService", function () {
+    module.config(function($provide) {
+        $provide.provider("movieService", function() {
 
             var movieUrl = "movies.json";
 
-            this.setMovieUrl = function (url) {
+            this.setMovieUrl = function(url) {
                 movieUrl = url;
             };
 
-            this.$get = function ($http, $q, Movie) {
+            this.$get = function($http, $q, Movie) {
                 var movies = [];
 
                 var getByTitle = function(title) {
@@ -34,19 +34,19 @@
                     return deferred.promise;
                 };
 
-                var get = function () {
+                var get = function() {
 
                     return $http.get(movieUrl)
-                                .then(function (response) {
-                                    movies = [];
-                                    var moviesJson = response.data;
-                                    angular.forEach(moviesJson, function(json) {
-                                        var movie = new Movie();
-                                        angular.extend(movie, json);
-                                        movies.push(movie);
-                                    });
-                                    return movies;
-                                });
+                        .then(function(response) {
+                            movies = [];
+                            var moviesJson = response.data;
+                            angular.forEach(moviesJson, function(json) {
+                                var movie = new Movie();
+                                angular.extend(movie, json);
+                                movies.push(movie);
+                            });
+                            return movies;
+                        });
                 };
                 this.$get.$inject = ["$http", "Movie"];
 
