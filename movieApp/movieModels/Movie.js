@@ -17,6 +17,8 @@
             if (newRating <= Movie.maxRating &&
                 newRating >= Movie.minRating) {
                 this.rating = newRating;
+            } else {
+                throw "Invalid rating value: " + newRating;
             }
         },
 

@@ -1,7 +1,5 @@
 (function() {
-
-    var module = angular.module("dataServices");
-
+   
     var transformObject = function(jsonResult, constructor) {
         var model = new constructor();
         angular.extend(model, jsonResult);
@@ -26,6 +24,7 @@
         };
     };
 
+    var module = angular.module("dataServices");
     module.factory("modelTransformer", modelTransformer);
 
 }());

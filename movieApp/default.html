@@ -1,73 +1,75 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-        <title>The Movie Application</title>
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" />
-        <style>
-        .toggle {
-        transition: 0.5s linear all;
-        opacity: 1;
+<head>
+    <title>The Movie Application</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.0.0/animate.css" />
+    <style>
+        .ng-hide-remove {
+            -webkit-animation: bounceIn 2.5s;
+            animation: bounceIn 2.5s;
         }
-        .toggle.ng-hide {
-        opacity: 0;
+
+        .ng-hide-add {
+            -webkit-animation: flipOutX 2.5s;
+            animation: flipOutX 2.5s;
+            display: block !important;
         }
-        .toggle.ng-hide-add, .toggle.ng-hide-remove {
-        display: block !important;
+
+        div[ng-view].ng-enter {
+            -webkit-animation: fadeInRight 0.5s;
+            animation: fadeInRight 0.5s;
         }
-        .ng-enter {
-        transition: all 0.5s linear;
-        opacity: 0;
-        }
-        .ng-enter.ng-enter-active {
-        
-        opacity: 1;
-        }
+
         .greetingWarning {
-        background: red;
+            background: red;
         }
+
         .greetingSuccess {
-        background: green;
+            background: green;
         }
-        body[ngCloak] {
-        display: none;
+
+        body[ng-cloak] {
+            display: none;
         }
+
         input.ng-dirty.ng-invalid {
-        background-color: red;
+            background-color: red;
         }
-        </style>
-    </head>
-    <body ng-app="movieApp" class="container" ng-cloak>
-        <nav class="navbar navbar-default navbar-inverse">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">At The Movies!</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li><a href="/default.html">Home</a></li>
-            </ul>
-        </nav>
-        <div ng-show="ajaxLoadingCount">
-            <span>loading...</span>
+    </style>
+</head>
+<body ng-app="movieApp" class="container" ng-cloak>
+    <nav class="navbar navbar-default navbar-inverse">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">At The Movies!</a>
         </div>
-        <div ng-show="error">
-            Error:
-            <pre>
+        <ul class="nav navbar-nav">
+            <li><a href="/default.html">Home</a></li>
+        </ul>
+    </nav>
+    <div ng-show="ajaxLoadingCount">
+        <span>loading...</span>
+    </div>
+    <div ng-show="error">
+        Error:
+        <pre>
                 {{ error | json }}
             </pre>
-        </div>
-        <div ng-view></div>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-route.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-animate.js"></script>
-        <script src="movieModels/module.js"></script>
-        <script src="movieModels/Movie.js"></script>
-        <script src="dataServices/movieService.js"></script>
-        <script src="dataServices/modelTransformer.js"></script>
-        <script src="main/module.js"></script>
-        <script src="main/ratingDirective.js"></script>
-        <script src="main/greetingDirective.js"></script>
-        <script src="main/MovieListController.js"></script>
-        <script src="main/MovieDetailsController.js"></script>
-        <script src="main/allJsonFilter.js"></script>
-        <script src="main/MovieEditController.js"></script>
-    </body>
-</html
+    </div>
+    <div ng-view></div>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-route.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-animate.js"></script>
+    <script src="movieModels/module.js"></script>
+    <script src="movieModels/Movie.js"></script>
+    <script src="dataServices/movieService.js"></script>
+    <script src="dataServices/modelTransformer.js"></script>
+    <script src="main/module.js"></script>
+    <script src="main/ratingDirective.js"></script>
+    <script src="main/greetingDirective.js"></script>
+    <script src="main/MovieListController.js"></script>
+    <script src="main/MovieDetailsController.js"></script>
+    <script src="main/allJsonFilter.js"></script>
+    <script src="main/MovieEditController.js"></script>
+</body>
+</html>
